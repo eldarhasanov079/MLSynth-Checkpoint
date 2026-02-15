@@ -1,0 +1,5 @@
+# For 8 NPUs only. Use network_4.yml for 4-NPU traces (2dp×2pp×1tp).
+topology: [ FullyConnected ]
+npus_count: [ 8 ]
+bandwidth: [ 100.0 ]  # GB/s
+latency: [ 500.0 ]    # ns

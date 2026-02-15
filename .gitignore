@@ -1,0 +1,21 @@
+# Environment
+env/
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+
+# External (setup separately)
+astra-sim/
+
+# MLSynth output
+MLSynth/output/
+
+# Generated traces
+experiment/traces/
+experiment/remote_sweep/traces/
+experiment/remote_sweep/temp_*.yaml
