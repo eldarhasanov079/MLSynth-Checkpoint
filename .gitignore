@@ -11,6 +11,8 @@ __pycache__/
 
 # External (setup separately)
 astra-sim/
+param/
+HolisticTraceAnalysis/
 
 # MLSynth output
 MLSynth/output/
