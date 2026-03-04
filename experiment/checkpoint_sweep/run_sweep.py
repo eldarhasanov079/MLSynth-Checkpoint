@@ -20,10 +20,11 @@ ROOT = SWEEP_DIR.parent.parent
 ML = ROOT / "MLSynth"
 TR = SWEEP_DIR / "traces"
 CONFIG = SWEEP_DIR / "config"
-OUTPUT_NAME = "transformer_8dp_1pp_1tp_64B_2048S_51200V_20480d_2b_100scale_20iter"
+NUM_ITERATIONS = 20  # Single source of truth: same for BASE, REMOTE_SYNC, REMOTE_ASYNC (only diff = checkpoint wrapper)
 STATE_MULTIPLIERS = [10, 100, 1000, 10000]
 BANDWIDTHS_GB_S = [100, 50, 10, 1]
 LATENCY_NS = 10000.0  # 10 µs, kept fixed when sweeping bandwidth
+OUTPUT_NAME = f"transformer_8dp_1pp_1tp_64B_2048S_51200V_20480d_2b_100scale_{NUM_ITERATIONS}iter"
 
 NETWORK_TEMPLATE = """# 8 NPUs, remote link: bandwidth {bandwidth} GB/s, latency {latency_ns} ns
 topology: [ FullyConnected ]
@@ -48,7 +49,7 @@ parallelism:
   pp_size: 1
   tp_size: 1
 
-num_iterations: 20
+num_iterations: {num_iterations}
 
 wrapper:
   type: "checkpoint"
@@ -77,7 +78,7 @@ parallelism:
   pp_size: 1
   tp_size: 1
 
-num_iterations: 20
+num_iterations: {num_iterations}
 """
 
 
@@ -88,11 +89,10 @@ def generate_base_traces() -> Path:
     (trace_dir / "et").mkdir(exist_ok=True)
 
     yaml_path = ML / "_sweep_base.yaml"
-    yaml_path.write_text(BASE_NO_CKPT_YAML)
+    yaml_path.write_text(BASE_NO_CKPT_YAML.format(num_iterations=NUM_ITERATIONS))
 
-    py = "python3" if sys.version_info >= (3, 0) else "python"
     subprocess.run(
-        [py, "synthesise_workload.py", "-c", str(yaml_path)],
+        [sys.executable, "synthesise_workload.py", "-c", str(yaml_path)],
         cwd=ML,
         check=True,
         capture_output=True,
@@ -118,12 +118,12 @@ def generate_traces(state_multiplier: int, mode: str) -> Path:
     yaml_content = BASE_YAML.format(
         mode=mode_val,
         state_multiplier=float(state_multiplier),
+        num_iterations=NUM_ITERATIONS,
     )
     yaml_path.write_text(yaml_content)
 
-    py = "python3" if sys.version_info >= (3, 0) else "python"
     subprocess.run(
-        [py, "synthesise_workload.py", "-c", str(yaml_path)],
+        [sys.executable, "synthesise_workload.py", "-c", str(yaml_path)],
         cwd=ML,
         check=True,
         capture_output=True,
