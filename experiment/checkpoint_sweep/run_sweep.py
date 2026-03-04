@@ -19,6 +19,7 @@ SWEEP_DIR = Path(__file__).resolve().parent
 ROOT = SWEEP_DIR.parent.parent
 ML = ROOT / "MLSynth"
 TR = SWEEP_DIR / "traces"
+CHAKRA_PYTHON = ROOT / "chakra_env" / "bin" / "python"  # Use for MLSynth if sys.executable has no chakra
 CONFIG = SWEEP_DIR / "config"
 NUM_ITERATIONS = 20  # Single source of truth: same for BASE, REMOTE_SYNC, REMOTE_ASYNC (only diff = checkpoint wrapper)
 STATE_MULTIPLIERS = [10, 100, 1000, 10000]
@@ -91,8 +92,9 @@ def generate_base_traces() -> Path:
     yaml_path = ML / "_sweep_base.yaml"
     yaml_path.write_text(BASE_NO_CKPT_YAML.format(num_iterations=NUM_ITERATIONS))
 
+    py = str(CHAKRA_PYTHON) if CHAKRA_PYTHON.exists() else sys.executable
     subprocess.run(
-        [sys.executable, "synthesise_workload.py", "-c", str(yaml_path)],
+        [py, "synthesise_workload.py", "-c", str(yaml_path)],
         cwd=ML,
         check=True,
         capture_output=True,
@@ -122,8 +124,9 @@ def generate_traces(state_multiplier: int, mode: str) -> Path:
     )
     yaml_path.write_text(yaml_content)
 
+    py = str(CHAKRA_PYTHON) if CHAKRA_PYTHON.exists() else sys.executable
     subprocess.run(
-        [sys.executable, "synthesise_workload.py", "-c", str(yaml_path)],
+        [py, "synthesise_workload.py", "-c", str(yaml_path)],
         cwd=ML,
         check=True,
         capture_output=True,

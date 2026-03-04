@@ -2,7 +2,26 @@
 
 **Experiment:** BASE (no checkpoint) vs REMOTE_SYNC vs REMOTE_ASYNC, sweeping **state_multiplier** (10, 100, 1000, 10000) and **bandwidth** (100, 50, 10, 1 GB/s).  
 **Simulator:** AstraSim Analytical Congestion-Aware.  
-**Workload:** 8 NPUs, 20 iterations, checkpoint every iteration.
+**Workload:** 8 NPUs, 20 iterations, checkpoint every iteration.  
+**Wrapper:** `MLSynth/Wrapper/CheckpointWrapper.py` (four modes; this sweep uses `remote_sync` and `remote_async` only).  
+**Results:** From `run_sweep.py` (traces + AstraSim). At **state_mult=10,000, bandwidth=1 GB/s** both REMOTE_SYNC and REMOTE_ASYNC hit “unreleased nodes” in the simulator; those cells are missing in tables/figures.
+
+---
+
+## Implementation comparison (CheckpointWrapper)
+
+The wrapper has **four modes**; the sweep uses only **remote_sync** and **remote_async** (plus BASE with no wrapper).
+
+| Mode | Used in sweep? | Boundary / next-iter dependency | Checkpoint DAG |
+|------|----------------|----------------------------------|----------------|
+| **sync** | No | Single COMP_NODE (save); next iter waits for it | One blocking write node (flops/tensor = cost, duration_micros from overhead_multiplier). |
+| **async** | No | Kickoff (or drain); next iter does **not** wait for write_bg | Kickoff → write_bg (background). Optional drain when backpressure. |
+| **remote_sync** | Yes → REMOTE_SYNC | **sync_join** (next iter waits for send+recv) | Kickoff (100 µs) → SEND + RECV (ring) → **sync_join** (1 µs, parents = [snd, rcv]). Boundary = sync_join. |
+| **remote_async** | Yes → REMOTE_ASYNC | **Kickoff** (next iter does not wait for upload) | Kickoff (100 µs) → SEND + RECV (ring); upload_send/recv not parents of next iter. Optional drain. |
+
+- **remote_sync:** Same kickoff cost as remote_async; extra **sync_join** (1 µs) per iteration so the next iteration waits for the full ring upload. → **20k more GPU cycles** (20 × 1 µs at 1 GHz).
+- **remote_async:** Kickoff is the boundary; SEND/RECV run in background and can overlap with the next iteration’s compute. → **Overlap** in the simulator; Wall = GPU + Comm − Overlap.
+- **Config:** `kickoff_cost_micros=100`, `state_multiplier` and `overhead_multiplier` set per run; ring comm `bytes_to_write` scales with state_mult. BASE uses the same model/parallelism/iterations and **no** wrapper.
 
 ---
 
@@ -46,7 +65,8 @@ BASE wall ≈ 753×10⁹; adding checkpoint (SYNC) → wall ≈ 1,207×10⁹ (**
 | [heatmap_overhead_remote_sync.png](figures/heatmap_overhead_remote_sync.png) | Heatmap: % wall increase vs BASE for REMOTE_SYNC (state_mult × bandwidth). |
 | [heatmap_overhead_remote_async.png](figures/heatmap_overhead_remote_async.png) | Heatmap: % wall increase vs BASE for REMOTE_ASYNC. |
 
-*To regenerate figures:* from repo root, `./chakra_env/bin/python experiment/checkpoint_sweep/plot_results.py` (or `python3` with matplotlib installed).
+*To regenerate figures:* from repo root, `./chakra_env/bin/python experiment/checkpoint_sweep/plot_results.py` (or `python3` with matplotlib installed).  
+*To re-run the sweep:* `python experiment/checkpoint_sweep/run_sweep.py` (generates traces with current CheckpointWrapper, runs AstraSim, overwrites results).
 
 ---
 
