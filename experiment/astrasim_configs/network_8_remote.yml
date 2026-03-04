@@ -1,0 +1,6 @@
+# 8 NPUs, slower remote storage link: 10µs latency, 10 GB/s
+# Use with scaled remote checkpoint traces (state_multiplier 10, 20 iter).
+topology: [ FullyConnected ]
+npus_count: [ 8 ]
+bandwidth: [ 10.0 ]   # GB/s (vs 100 GB/s – transfer no longer "free")
+latency: [ 10000.0 ]  # ns = 10 µs (vs 500 ns – more realistic remote-ish)

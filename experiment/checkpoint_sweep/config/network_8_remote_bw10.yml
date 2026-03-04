@@ -1,0 +1,5 @@
+# 8 NPUs, remote link: bandwidth 10 GB/s, latency 10000.0 ns
+topology: [ FullyConnected ]
+npus_count: [ 8 ]
+bandwidth: [ 10 ]
+latency: [ 10000.0 ]

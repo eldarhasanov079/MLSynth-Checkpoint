@@ -1,0 +1,53 @@
+[2026-02-28 18:49:36.165] [system::topology::RingTopology] [info] ring of node 0, id: 0 dimension: local total nodes in ring: 8 index in ring: 0 offset: 1 total nodes in ring: 8
+[2026-02-28 18:49:36.165] [system::topology::RingTopology] [info] ring of node 0, id: 0 dimension: local total nodes in ring: 8 index in ring: 0 offset: 1 total nodes in ring: 8
+[2026-02-28 18:49:36.165] [system::topology::RingTopology] [info] ring of node 0, id: 0 dimension: local total nodes in ring: 8 index in ring: 0 offset: 1 total nodes in ring: 8
+[2026-02-28 18:49:36.165] [system::topology::RingTopology] [info] ring of node 0, id: 0 dimension: local total nodes in ring: 8 index in ring: 0 offset: 1 total nodes in ring: 8
+[2026-02-28 18:49:49.416] [workload] [info] sys[4] finished, 6008842093160 cycles, exposed communication 6008842057800 cycles.
+[2026-02-28 18:49:49.416] [statistics] [info] sys[4]. Post statistics processing start.
+[2026-02-28 18:49:49.551] [statistics] [info] sys[4]. Post statistics processing end.
+[2026-02-28 18:49:49.551] [statistics] [info] sys[4], Wall time: 6008842093160
+[2026-02-28 18:49:49.551] [statistics] [info] sys[4], GPU time: 35360
+[2026-02-28 18:49:49.551] [statistics] [info] sys[4], Comm time: 6008842057800
+[2026-02-28 18:49:49.551] [workload] [info] sys[5] finished, 6008842093160 cycles, exposed communication 6008842057800 cycles.
+[2026-02-28 18:49:49.551] [statistics] [info] sys[5]. Post statistics processing start.
+[2026-02-28 18:49:49.558] [statistics] [info] sys[5]. Post statistics processing end.
+[2026-02-28 18:49:49.558] [statistics] [info] sys[5], Wall time: 6008842093160
+[2026-02-28 18:49:49.558] [statistics] [info] sys[5], GPU time: 35360
+[2026-02-28 18:49:49.558] [statistics] [info] sys[5], Comm time: 6008842057800
+[2026-02-28 18:49:49.558] [workload] [info] sys[6] finished, 6008842093160 cycles, exposed communication 6008842057800 cycles.
+[2026-02-28 18:49:49.558] [statistics] [info] sys[6]. Post statistics processing start.
+[2026-02-28 18:49:49.564] [statistics] [info] sys[6]. Post statistics processing end.
+[2026-02-28 18:49:49.564] [statistics] [info] sys[6], Wall time: 6008842093160
+[2026-02-28 18:49:49.564] [statistics] [info] sys[6], GPU time: 35360
+[2026-02-28 18:49:49.564] [statistics] [info] sys[6], Comm time: 6008842057800
+[2026-02-28 18:49:49.564] [workload] [info] sys[7] finished, 6008842093160 cycles, exposed communication 6008842057800 cycles.
+[2026-02-28 18:49:49.564] [statistics] [info] sys[7]. Post statistics processing start.
+[2026-02-28 18:49:49.570] [statistics] [info] sys[7]. Post statistics processing end.
+[2026-02-28 18:49:49.570] [statistics] [info] sys[7], Wall time: 6008842093160
+[2026-02-28 18:49:49.570] [statistics] [info] sys[7], GPU time: 35360
+[2026-02-28 18:49:49.570] [statistics] [info] sys[7], Comm time: 6008842057800
+[2026-02-28 18:49:49.570] [workload] [info] sys[0] finished, 6008842093160 cycles, exposed communication 6008842057800 cycles.
+[2026-02-28 18:49:49.570] [statistics] [info] sys[0]. Post statistics processing start.
+[2026-02-28 18:49:49.576] [statistics] [info] sys[0]. Post statistics processing end.
+[2026-02-28 18:49:49.576] [statistics] [info] sys[0], Wall time: 6008842093160
+[2026-02-28 18:49:49.576] [statistics] [info] sys[0], GPU time: 35360
+[2026-02-28 18:49:49.576] [statistics] [info] sys[0], Comm time: 6008842057800
+[2026-02-28 18:49:49.576] [workload] [info] sys[1] finished, 6008842093160 cycles, exposed communication 6008842057800 cycles.
+[2026-02-28 18:49:49.576] [statistics] [info] sys[1]. Post statistics processing start.
+[2026-02-28 18:49:49.581] [statistics] [info] sys[1]. Post statistics processing end.
+[2026-02-28 18:49:49.581] [statistics] [info] sys[1], Wall time: 6008842093160
+[2026-02-28 18:49:49.581] [statistics] [info] sys[1], GPU time: 35360
+[2026-02-28 18:49:49.581] [statistics] [info] sys[1], Comm time: 6008842057800
+[2026-02-28 18:49:49.581] [workload] [info] sys[2] finished, 6008842093160 cycles, exposed communication 6008842057800 cycles.
+[2026-02-28 18:49:49.581] [statistics] [info] sys[2]. Post statistics processing start.
+[2026-02-28 18:49:49.588] [statistics] [info] sys[2]. Post statistics processing end.
+[2026-02-28 18:49:49.588] [statistics] [info] sys[2], Wall time: 6008842093160
+[2026-02-28 18:49:49.589] [statistics] [info] sys[2], GPU time: 35360
+[2026-02-28 18:49:49.589] [statistics] [info] sys[2], Comm time: 6008842057800
+[2026-02-28 18:49:49.589] [workload] [info] sys[3] finished, 6008842093160 cycles, exposed communication 6008842057800 cycles.
+[2026-02-28 18:49:49.589] [statistics] [info] sys[3]. Post statistics processing start.
+[2026-02-28 18:49:49.599] [statistics] [info] sys[3]. Post statistics processing end.
+[2026-02-28 18:49:49.599] [statistics] [info] sys[3], Wall time: 6008842093160
+[2026-02-28 18:49:49.599] [statistics] [info] sys[3], GPU time: 35360
+[2026-02-28 18:49:49.599] [statistics] [info] sys[3], Comm time: 6008842057800
+[2026-02-28 18:49:49.945] [system] [warning] Exiting

@@ -1,0 +1,28 @@
+# Scaled experiment: 8 NPUs (8dp × 1pp × 1tp), big checkpoint, 20 iter
+# For REMOTE_ASYNC mode. Use network_8_remote.yml (10µs, 10 GB/s) in AstraSim.
+model:
+  name: "transformer"
+  num_layers: 24
+  sequence_len: 2048
+  vocab_size: 51200
+  hidden_size: 20480
+  batch_size: 64   # 64 // 8 dp >= 8 microbatches
+  num_microbatches: 8
+  bytes_per_val: 2
+  scale: 1
+
+parallelism:
+  dp_size: 8
+  pp_size: 1
+  tp_size: 1
+
+num_iterations: 20
+
+wrapper:
+  type: "checkpoint"
+  mode: "remote_async"
+  checkpoint_every_n: 1
+  state_multiplier: 10.0   # Big checkpoint (vs 3.0 default)
+  overhead_multiplier: 10000
+  kickoff_cost_micros: 100
+  drain_when_backpressure: false

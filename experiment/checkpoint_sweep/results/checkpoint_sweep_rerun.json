@@ -1,0 +1,326 @@
+[
+  {
+    "state_multiplier": null,
+    "bandwidth_gb_s": 100,
+    "mode": "BASE",
+    "wall_time_cycles": 753056955760,
+    "gpu_time_cycles": 15360,
+    "comm_time_cycles": 753056940400,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": null,
+    "bandwidth_gb_s": 50,
+    "mode": "BASE",
+    "wall_time_cycles": 832518067280,
+    "gpu_time_cycles": 15360,
+    "comm_time_cycles": 832518051920,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": null,
+    "bandwidth_gb_s": 10,
+    "mode": "BASE",
+    "wall_time_cycles": 1468206954960,
+    "gpu_time_cycles": 15360,
+    "comm_time_cycles": 1468206939600,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": null,
+    "bandwidth_gb_s": 1,
+    "mode": "BASE",
+    "wall_time_cycles": 8619706951440,
+    "gpu_time_cycles": 15360,
+    "comm_time_cycles": 8619706936080,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": 10,
+    "bandwidth_gb_s": 100,
+    "mode": "REMOTE_SYNC",
+    "wall_time_cycles": 1207120667580,
+    "gpu_time_cycles": 35360,
+    "comm_time_cycles": 1207120632220,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": 10,
+    "bandwidth_gb_s": 50,
+    "mode": "REMOTE_SYNC",
+    "wall_time_cycles": 1740645270920,
+    "gpu_time_cycles": 35360,
+    "comm_time_cycles": 1740645235560,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": 10,
+    "bandwidth_gb_s": 10,
+    "mode": "REMOTE_SYNC",
+    "wall_time_cycles": 6008842093160,
+    "gpu_time_cycles": 35360,
+    "comm_time_cycles": 6008842057800,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": 10,
+    "bandwidth_gb_s": 1,
+    "mode": "REMOTE_SYNC",
+    "wall_time_cycles": 54026056353560,
+    "gpu_time_cycles": 35360,
+    "comm_time_cycles": 54026056318200,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": 10,
+    "bandwidth_gb_s": 100,
+    "mode": "REMOTE_ASYNC",
+    "wall_time_cycles": 1207122632988,
+    "gpu_time_cycles": 2015360,
+    "comm_time_cycles": 1207122632220,
+    "overlap_cycles": 2014592
+  },
+  {
+    "state_multiplier": 10,
+    "bandwidth_gb_s": 50,
+    "mode": "REMOTE_ASYNC",
+    "wall_time_cycles": 1740647236328,
+    "gpu_time_cycles": 2015360,
+    "comm_time_cycles": 1740647235560,
+    "overlap_cycles": 2014592
+  },
+  {
+    "state_multiplier": 10,
+    "bandwidth_gb_s": 10,
+    "mode": "REMOTE_ASYNC",
+    "wall_time_cycles": 6008844058568,
+    "gpu_time_cycles": 2015360,
+    "comm_time_cycles": 6008844057800,
+    "overlap_cycles": 2014592
+  },
+  {
+    "state_multiplier": 10,
+    "bandwidth_gb_s": 1,
+    "mode": "REMOTE_ASYNC",
+    "wall_time_cycles": 54026058318968,
+    "gpu_time_cycles": 2015360,
+    "comm_time_cycles": 54026058318200,
+    "overlap_cycles": 2014592
+  },
+  {
+    "state_multiplier": 100,
+    "bandwidth_gb_s": 100,
+    "mode": "REMOTE_SYNC",
+    "wall_time_cycles": 5293692093960,
+    "gpu_time_cycles": 35360,
+    "comm_time_cycles": 5293692058600,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": 100,
+    "bandwidth_gb_s": 50,
+    "mode": "REMOTE_SYNC",
+    "wall_time_cycles": 9913788123700,
+    "gpu_time_cycles": 35360,
+    "comm_time_cycles": 9913788088340,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": 100,
+    "bandwidth_gb_s": 10,
+    "mode": "REMOTE_SYNC",
+    "wall_time_cycles": 46874556357080,
+    "gpu_time_cycles": 35360,
+    "comm_time_cycles": 46874556321720,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": 100,
+    "bandwidth_gb_s": 1,
+    "mode": "REMOTE_SYNC",
+    "wall_time_cycles": 462683198992720,
+    "gpu_time_cycles": 35360,
+    "comm_time_cycles": 462683198957360,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": 100,
+    "bandwidth_gb_s": 100,
+    "mode": "REMOTE_ASYNC",
+    "wall_time_cycles": 5293694059368,
+    "gpu_time_cycles": 2015360,
+    "comm_time_cycles": 5293694058600,
+    "overlap_cycles": 2014592
+  },
+  {
+    "state_multiplier": 100,
+    "bandwidth_gb_s": 50,
+    "mode": "REMOTE_ASYNC",
+    "wall_time_cycles": 9913790089108,
+    "gpu_time_cycles": 2015360,
+    "comm_time_cycles": 9913790088340,
+    "overlap_cycles": 2014592
+  },
+  {
+    "state_multiplier": 100,
+    "bandwidth_gb_s": 10,
+    "mode": "REMOTE_ASYNC",
+    "wall_time_cycles": 46874558322488,
+    "gpu_time_cycles": 2015360,
+    "comm_time_cycles": 46874558321720,
+    "overlap_cycles": 2014592
+  },
+  {
+    "state_multiplier": 100,
+    "bandwidth_gb_s": 1,
+    "mode": "REMOTE_ASYNC",
+    "wall_time_cycles": 462683200958128,
+    "gpu_time_cycles": 2015360,
+    "comm_time_cycles": 462683200957360,
+    "overlap_cycles": 2014592
+  },
+  {
+    "state_multiplier": 1000,
+    "bandwidth_gb_s": 100,
+    "mode": "REMOTE_SYNC",
+    "wall_time_cycles": 46159406357880,
+    "gpu_time_cycles": 35360,
+    "comm_time_cycles": 46159406322520,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": 1000,
+    "bandwidth_gb_s": 50,
+    "mode": "REMOTE_SYNC",
+    "wall_time_cycles": 91645216651520,
+    "gpu_time_cycles": 35360,
+    "comm_time_cycles": 91645216616160,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": 1000,
+    "bandwidth_gb_s": 10,
+    "mode": "REMOTE_SYNC",
+    "wall_time_cycles": 455531698996240,
+    "gpu_time_cycles": 35360,
+    "comm_time_cycles": 455531698960880,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": 1000,
+    "bandwidth_gb_s": 1,
+    "mode": "REMOTE_SYNC",
+    "wall_time_cycles": 4549254625384320,
+    "gpu_time_cycles": 35360,
+    "comm_time_cycles": 4549254625348960,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": 1000,
+    "bandwidth_gb_s": 100,
+    "mode": "REMOTE_ASYNC",
+    "wall_time_cycles": 46159408323288,
+    "gpu_time_cycles": 2015360,
+    "comm_time_cycles": 46159408322520,
+    "overlap_cycles": 2014592
+  },
+  {
+    "state_multiplier": 1000,
+    "bandwidth_gb_s": 50,
+    "mode": "REMOTE_ASYNC",
+    "wall_time_cycles": 91645218616928,
+    "gpu_time_cycles": 2015360,
+    "comm_time_cycles": 91645218616160,
+    "overlap_cycles": 2014592
+  },
+  {
+    "state_multiplier": 1000,
+    "bandwidth_gb_s": 10,
+    "mode": "REMOTE_ASYNC",
+    "wall_time_cycles": 455531700961648,
+    "gpu_time_cycles": 2015360,
+    "comm_time_cycles": 455531700960880,
+    "overlap_cycles": 2014592
+  },
+  {
+    "state_multiplier": 1000,
+    "bandwidth_gb_s": 1,
+    "mode": "REMOTE_ASYNC",
+    "wall_time_cycles": 4549254627349728,
+    "gpu_time_cycles": 2015360,
+    "comm_time_cycles": 4549254627348960,
+    "overlap_cycles": 2014592
+  },
+  {
+    "state_multiplier": 10000,
+    "bandwidth_gb_s": 100,
+    "mode": "REMOTE_SYNC",
+    "wall_time_cycles": 454816548997040,
+    "gpu_time_cycles": 35360,
+    "comm_time_cycles": 454816548961680,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": 10000,
+    "bandwidth_gb_s": 50,
+    "mode": "REMOTE_SYNC",
+    "wall_time_cycles": 908959501929840,
+    "gpu_time_cycles": 35360,
+    "comm_time_cycles": 908959501894480,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": 10000,
+    "bandwidth_gb_s": 10,
+    "mode": "REMOTE_SYNC",
+    "wall_time_cycles": 4542103125387840,
+    "gpu_time_cycles": 35360,
+    "comm_time_cycles": 4542103125352480,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": 10000,
+    "bandwidth_gb_s": 1,
+    "mode": "REMOTE_SYNC",
+    "wall_time_cycles": null,
+    "gpu_time_cycles": null,
+    "comm_time_cycles": null,
+    "overlap_cycles": 0
+  },
+  {
+    "state_multiplier": 10000,
+    "bandwidth_gb_s": 100,
+    "mode": "REMOTE_ASYNC",
+    "wall_time_cycles": 454816550962448,
+    "gpu_time_cycles": 2015360,
+    "comm_time_cycles": 454816550961680,
+    "overlap_cycles": 2014592
+  },
+  {
+    "state_multiplier": 10000,
+    "bandwidth_gb_s": 50,
+    "mode": "REMOTE_ASYNC",
+    "wall_time_cycles": 908959503895248,
+    "gpu_time_cycles": 2015360,
+    "comm_time_cycles": 908959503894480,
+    "overlap_cycles": 2014592
+  },
+  {
+    "state_multiplier": 10000,
+    "bandwidth_gb_s": 10,
+    "mode": "REMOTE_ASYNC",
+    "wall_time_cycles": 4542103127353248,
+    "gpu_time_cycles": 2015360,
+    "comm_time_cycles": 4542103127352480,
+    "overlap_cycles": 2014592
+  },
+  {
+    "state_multiplier": 10000,
+    "bandwidth_gb_s": 1,
+    "mode": "REMOTE_ASYNC",
+    "wall_time_cycles": null,
+    "gpu_time_cycles": null,
+    "comm_time_cycles": null,
+    "overlap_cycles": 0
+  }
+]
