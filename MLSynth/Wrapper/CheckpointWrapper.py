@@ -2,8 +2,8 @@
 Checkpointing wrapper with four modes:
   sync:        Local disk write (COMP_NODE), stop-the-world.
   async:       Local background write (KICKOFF + WRITE_BG), optional drain.
-  remote_sync: Remote upload via ring COMM, stop-the-world until complete.
-  remote_async: Remote background upload (KICKOFF + COMM send), shares NIC.
+  remote_sync: KICKOFF (blocking) then ring COMM; boundary = sync_join (wait for send+recv).
+  remote_async: KICKOFF (non-blocking boundary) then COMM in background, shares NIC.
 """
 
 from typing import List, Optional, Tuple
@@ -85,7 +85,16 @@ class CheckpointWrapper(Wrapper):
             return [node], None
 
         if self.mode == "remote_sync":
-            # Ring: each NPU sends to next, receives from prev. Models NIC upload to remote storage.
+            # Blocking kickoff (same cost model as remote_async, slightly smaller cap), then ring COMM.
+            # Boundary = sync_join so next iteration waits for full upload (no finalize node).
+            kickoff_cap = min(cost, int(5e5))  # Slightly smaller than async 1e6
+            kickoff = compute(
+                flops=kickoff_cap,
+                tensor_size=kickoff_cap,
+                parents=valid_parents,
+                name=f"COMP_NODE_CHECKPOINT_REMOTE_KICKOFF_iter{iteration}_npu{npu_id}",
+                duration_micros=self.kickoff_cost_micros,
+            )
             next_npu = (npu_id + 1) % self.num_npus
             prev_npu = (npu_id - 1 + self.num_npus) % self.num_npus
             tag = 8000 + iteration  # Distinct from training comm tags
@@ -94,7 +103,7 @@ class CheckpointWrapper(Wrapper):
                 next_npu,
                 bytes_to_write,
                 name=f"COMM_SEND_NODE_CHECKPOINT_REMOTE_iter{iteration}_npu{npu_id}",
-                parents=valid_parents,
+                parents=[kickoff],
                 comm_tag=tag,
             )
             rcv = receive(
@@ -102,19 +111,19 @@ class CheckpointWrapper(Wrapper):
                 npu_id,
                 bytes_to_write,
                 name=f"COMM_RECV_NODE_CHECKPOINT_REMOTE_iter{iteration}_npu{npu_id}",
-                parents=valid_parents,
+                parents=[kickoff],
                 comm_tag=tag,
             )
-            # Boundary = finalize waits for both send and recv (stop-the-world)
-            finalize = compute(
+            # Minimal join so orchestrator's prev_comp waits for both send and recv (blocking).
+            sync_join = compute(
                 flops=1,
                 tensor_size=1,
                 parents=[snd, rcv],
-                name=f"COMP_NODE_CHECKPOINT_REMOTE_FINALIZE_iter{iteration}_npu{npu_id}",
+                name=f"COMP_NODE_CHECKPOINT_REMOTE_SYNC_JOIN_iter{iteration}_npu{npu_id}",
                 duration_micros=1,
             )
-            # Return [finalize, snd, rcv] so prev_comp=finalize; all nodes appended
-            return [finalize, snd, rcv], None
+            # Return [sync_join, kickoff, snd, rcv] so prev_comp=sync_join; all nodes appended
+            return [sync_join, kickoff, snd, rcv], None
 
         if self.mode == "remote_async":
             # Boundary: kickoff|drain. Spawn: COMM upload (background, shares NIC).
@@ -138,9 +147,10 @@ class CheckpointWrapper(Wrapper):
             else:
                 boundary_parents_ra = valid_parents
 
+            kickoff_cap = min(cost, int(5e5))  # Same as remote_sync, slightly smaller than before
             kickoff = compute(
-                flops=min(cost, int(1e6)),
-                tensor_size=min(cost, int(1e6)),
+                flops=kickoff_cap,
+                tensor_size=kickoff_cap,
                 parents=boundary_parents_ra,
                 name=f"COMP_NODE_CHECKPOINT_REMOTE_KICKOFF_iter{iteration}_npu{npu_id}",
                 duration_micros=self.kickoff_cost_micros,

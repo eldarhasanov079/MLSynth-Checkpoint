@@ -8,8 +8,8 @@ Injects checkpoint save overhead into ET traces at end-of-iteration boundaries.
 |------|----------|
 | `sync` | Local disk write (COMP_NODE), stop-the-world |
 | `async` | Local background write (KICKOFF + WRITE_BG), optional drain |
-| `remote_sync` | Remote upload via ring COMM, blocking until complete |
-| `remote_async` | Remote background upload (KICKOFF + COMM send), shares NIC |
+| `remote_sync` | KICKOFF (blocking) then ring COMM; boundary = SYNC_JOIN (wait for send+recv). Same kickoff cost as remote_async. |
+| `remote_async` | KICKOFF (non-blocking boundary) then COMM in background, shares NIC |
 
 ## Config (under `wrapper:`)
 
